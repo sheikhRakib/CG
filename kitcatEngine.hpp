@@ -4,28 +4,74 @@
 
 using namespace std;
 
+///Screen
+const double SCREEN_X = 4.60; //Width = 2 * SCREEN_X
+const double SCREEN_Y = 2.85; //height = 2 * SCREEN_Y
+///Game States
+const int GAME_NOT_STARTED = 0;
+const int GAME_RUNNING = 1;
+const int GAME_PAUSED = 2;
+const int GAME_FINISHED = 3;
 
-//make sure to make them readonly
-double SCREEN_X = 4.6; //Width = 2 * SCREEN_X
-double SCREEN_Y = 3.0; //height = 2 * SCREEN_Y
+int STATE = GAME_NOT_STARTED; ///game state
 
-void MyKeyboardFunc(unsigned char Key, int x, int y)
+///Fonts
+const int FONT_TIMES_ROMAN_24 = (int)GLUT_BITMAP_TIMES_ROMAN_24;
+const int FONT_TIMES_ROMAN_10 = (int)GLUT_BITMAP_TIMES_ROMAN_10;
+
+
+///to draw strings
+void DrawBitmapString(float x, float y, void *font,const char *string)
+{
+    const char *c;
+    glRasterPos2f(x, y);
+    for (c=string; *c != '\0'; c++) {
+        glutBitmapCharacter(font, *c);
+    }
+}
+
+void MainMenu()
+{
+    glColor3f(1,1,0);
+    DrawBitmapString(-1, 1,(void *)FONT_TIMES_ROMAN_24,"Welcome to KitCat");
+    DrawBitmapString(-1, 1-0.5,(void *)FONT_TIMES_ROMAN_24,"AAAA");
+}
+
+void KeyboardListener(unsigned char Key, int x, int y)
 {
     switch(Key)
     {
         case 27: ///ESC key.
             exit(0);
         break;
-        case 13:  ///Enter key.
-            //startGame = 1;
-        break;
-
-        case 'P':
-        case 'p':
-//            pause = (pause)?false:true;
-  //          cout<<pause<<" ";
+        case 13: ///Enter Key
+                if(STATE == GAME_NOT_STARTED || STATE == GAME_PAUSED)
+                {
+                    STATE = GAME_RUNNING;
+                }
+                else if(STATE == GAME_RUNNING)
+                {
+                    STATE = GAME_PAUSED;
+                }
         break;
         default:
         break;
     }
+}
+
+
+
+
+
+
+
+
+void DrawBackground()
+{
+    glutWireCube(.5);
+    glutWireCube(1);
+    glutWireCube(1.5);
+    glutWireCube(2);
+    glutWireCube(2.5);
+    glutWireCube(3);
 }
