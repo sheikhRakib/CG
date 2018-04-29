@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <iostream>
+#include <GL/gl.h>
+#include <GL/glut.h>
 using namespace std;
-
+///photo size 270 x 257
 class Cat
 {
 public:
@@ -31,6 +33,10 @@ public:
     void drawBody()
     {
         glutWireCube(0.1);
+        glutWireCube(0.2);
+        glutWireCube(0.3);
+        glutWireCube(0.4);
+        glutWireCube(0.5);
         if(STATUS == ALIVE)
         {
             if(MOUTH_STATUS = MOUTH_OPEN)
@@ -41,6 +47,14 @@ public:
             {
                 ///normal mouth
             }
+
+
+
+
+
+
+
+
         }
     }
 };

@@ -7,6 +7,7 @@ using namespace std;
 ///Screen
 const double SCREEN_X = 4.60; //Width = 2 * SCREEN_X
 const double SCREEN_Y = 2.85; //height = 2 * SCREEN_Y
+
 ///Game States
 const int GAME_NOT_STARTED = 0;
 const int GAME_RUNNING = 1;
@@ -17,8 +18,6 @@ int STATE = GAME_NOT_STARTED; ///game state
 
 ///Fonts
 const int FONT_TIMES_ROMAN_24 = (int)GLUT_BITMAP_TIMES_ROMAN_24;
-const int FONT_TIMES_ROMAN_10 = (int)GLUT_BITMAP_TIMES_ROMAN_10;
-
 
 ///to draw strings
 void DrawBitmapString(float x, float y, void *font,const char *string)
@@ -28,13 +27,6 @@ void DrawBitmapString(float x, float y, void *font,const char *string)
     for (c=string; *c != '\0'; c++) {
         glutBitmapCharacter(font, *c);
     }
-}
-
-void MainMenu()
-{
-    glColor3f(1,1,0);
-    DrawBitmapString(-1, 1,(void *)FONT_TIMES_ROMAN_24,"Welcome to KitCat");
-    DrawBitmapString(-1, 1-0.5,(void *)FONT_TIMES_ROMAN_24,"AAAA");
 }
 
 void KeyboardListener(unsigned char Key, int x, int y)
@@ -58,11 +50,6 @@ void KeyboardListener(unsigned char Key, int x, int y)
         break;
     }
 }
-
-
-
-
-
 
 
 
